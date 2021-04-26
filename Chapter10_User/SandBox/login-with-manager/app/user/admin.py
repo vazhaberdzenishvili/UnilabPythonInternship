@@ -2,7 +2,7 @@ from flask import request, url_for, redirect
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask_admin.menu import MenuLink
-from flask_user import current_user
+from flask_login import current_user
 
 from app.models import RandomModel
 from app.models.users import User, Role, UserRoles

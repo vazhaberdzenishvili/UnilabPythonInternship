@@ -1,0 +1,48 @@
+from flask import Blueprint, render_template, redirect, url_for, request, flash
+from app.models import UserModel
+from app.user.forms import RegistrationForm, LoginForm
+from app import pages
+
+user_blueprint = Blueprint('UserModel',
+                           __name__,
+                           template_folder='templates/user'
+                           )
+
+
+@user_blueprint.route('/registration', methods=['GET', 'POST'])
+def registration():
+    form = RegistrationForm()
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            firstname = form.firstname.data
+            lastname = form.lastname.data
+            password = form.password.data
+            email = form.email.data
+            user = UserModel(firstname, lastname, password, email)
+            if UserModel.find_by_email(email) is None:
+                user.add_user()
+                flash(f"{firstname},თქვენ წარმატებით გაიარეთ რეგისტრაცია")
+                return redirect(url_for('UserModel.login'))
+            else:
+                flash(f"მომხმარებელი {email} ელფოსტით უკვე დარეგისტრირებულია")
+            return redirect(url_for('UserModel.registration'))
+    return render_template('register.html', form=form, pages=pages)
+
+
+@user_blueprint.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            email = form.email.data
+            password = form.password.data
+            user = UserModel.query.filter_by(email=email).first()
+            if user:
+                if user.password == password:
+                    flash(f"{email},თქვენ წარმატებით გაიარეთ ავტორიზაცია")
+                    return redirect(url_for('StoreModel.store'))
+                else:
+                    flash(f"პაროლი არასწორია")
+                    return redirect(url_for('UserModel.login'))
+            flash(f"{email} ელფოსტით მომხმარებელი არ არის რეგისტრირებული")
+    return render_template('login.html', form=form, pages=pages)

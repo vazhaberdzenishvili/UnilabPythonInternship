@@ -1,0 +1,38 @@
+body {
+    background-image: url("background_img.jpg");
+    background-repeat: no-repeat, repeat;
+    background-size: cover;
+}
+nav{
+    display: flex;
+    padding: 8px;
+    background-color: transparent;
+}
+.navbar-nav{
+    margin: 0 auto;
+}
+.login_form{
+    position: relative;
+    width: 30%;
+    height: 350px;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0,0,0,1);
+    margin-top: 20%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 10px;
+}
+button.login_form{
+    position: absolute;
+}
+.register_form{
+    position: relative;
+    width: 50%;
+    height: 600px;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0,0,0,1);
+    margin-top: 30%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+}
