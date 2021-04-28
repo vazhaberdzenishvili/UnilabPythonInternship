@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from app import db
-from app.models import StoreModel
+from app.models.store import StoreModel
 from app import pages
-from flask_login import login_required
+from flask_user import current_user
 
 store_blueprint = Blueprint('StoreModel',
                             __name__,
@@ -11,10 +11,11 @@ store_blueprint = Blueprint('StoreModel',
 
 
 @store_blueprint.route('/store', methods=['GET', 'POST'])
-@login_required
 def store():
-    data = StoreModel.query.all()
-    return render_template('store.html', pages=pages, items=data)
+    if current_user.is_authenticated:
+        data = StoreModel.query.all()
+        return render_template('store.html', pages=pages, items=data)
+    return redirect(url_for('UserModel.login'))
 
 
 @store_blueprint.route('/add', methods=['GET', 'POST'])

@@ -21,9 +21,9 @@ def populate_db():
     admin_role = find_or_create_role("Admin")
 
     find_or_create_user(
-        firstname="vazha",
-        lastname="berdzenishvili",
-        username="vazha1234",
+        firstname="nick",
+        lastname="smth",
+        username="smth1234",
         email="smth@mail.ru",
         password="pass1234",
         role=admin_role,

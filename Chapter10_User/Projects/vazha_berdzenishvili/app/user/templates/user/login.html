@@ -1,26 +1,32 @@
 {% extends "base.html" %}
 {% block content %}
 
-<fieldset class="login_form">
+<fieldset>
     <div class="container" xmlns="http://www.w3.org/1999/html">
 
-        <h1><strong>Login</strong></h1>
-            <form method="POST">
+        <h1 id="login_title"><strong>Login</strong></h1>
+            <form method="POST"  class="login_form">
                 {{ form.hidden_tag() }}
-                {{ form.username.label }} {{ form.username(class_="form-control") }}
+                <span class="login_username">
+                    {{ form.username.label }} {{ form.username(class_="form-control") }}
+                </span>
                 <ul>
                     {%for error in form.username.errors %}
                         <li style="color: red">{{error}}</li>
                     {%endfor%}
                  </ul>
-                {{ form.password.label }} {{ form.password(class_="form-control") }}
+                    <span class="login_pass">
+                        {{ form.password.label }} {{ form.password(class_="form-control") }}
+                    </span>
                 <ul>
                     {%for error in form.password.errors %}
                         <li style="color: red">{{error}}</li>
                     {%endfor%}
                 </ul>
-                {{ form.submit() }}
-            </form>
+                    <span class="login_submit">
+                        {{ form.submit() }}
+                    </span>
+                </form>
     </div>
 </fieldset>
 

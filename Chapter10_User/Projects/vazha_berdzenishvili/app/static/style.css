@@ -31,8 +31,37 @@ button.login_form{
     height: 600px;
     flex-direction: column;
     box-shadow: 0 0 10px rgba(0,0,0,1);
-    margin-top: 30%;
+    margin-top: 40%;
     left: 50%;
     transform: translate(-50%,-50%);
+    border-radius: 20px;
+}
 
+.form-control{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 70%;
+    left: 15%;
+    margin-bottom: -20px;
+    flex: 0 0 200px;
+
+}
+.submit-button-login{
+    width: 75%;
+    outline: 0;
+}
+#reg_title{
+    text-align: center;
+}
+#login_title{
+    text-align: center;
+}
+.login_username{
+    position: relative;
+    border-bottom: 1px solid silver;
+    margin: 30px 0;
+}
+.login_pass{
+    margin-bottom:10px;
 }
